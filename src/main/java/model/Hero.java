@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Hero {
+public abstract class Hero implements SpecialActionable {
+
+    private int currentLevel = 0;
 
     private int endurance;
     private int fastDescentCost;
@@ -11,4 +13,60 @@ public abstract class Hero {
         this.fastDescentCost = fastDescentCost;
         this.specialActionCost = specialActionCost;
     }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
+
+    public int getEndurance() {
+        return endurance;
+    }
+
+    public void setEndurance(int endurance) {
+        this.endurance = endurance;
+    }
+
+    public int getFastDescentCost() {
+        return fastDescentCost;
+    }
+
+    public void setFastDescentCost(int fastDescentCost) {
+        this.fastDescentCost = fastDescentCost;
+    }
+
+    public int getSpecialActionCost() {
+        return specialActionCost;
+    }
+
+    public void setSpecialActionCost(int specialActionCost) {
+        this.specialActionCost = specialActionCost;
+    }
+
+    public void actionRestoreEndurance()
+    {
+        this.endurance += 2;
+    }
+
+    public void actionRest()
+    {
+        actionRestoreEndurance();
+        this.endurance += 3;
+    }
+
+    public void actionDescent()
+    {
+        actionRestoreEndurance();
+        this.endurance -= 5;
+    }
+
+    public void actionFastDescent()
+    {
+
+    }
+
 }
