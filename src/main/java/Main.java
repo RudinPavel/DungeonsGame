@@ -15,7 +15,6 @@ public class Main {
         Random rnd = new Random();
 
         System.out.println("Welcome to Dungeons Game!");
-        Game game = new Game();
 
         System.out.println("Input name for player 1 :");
         Player player1 = new Player(cin.nextLine());
@@ -23,8 +22,8 @@ public class Main {
         System.out.println("Input name for player 2 :");
         Player player2 = new Player(cin.nextLine());
 
-        System.out.println("player 1 : "+ player1.getName());
-        System.out.println("player 2 : "+ player2.getName());
+        System.out.println("player 1 : " + player1.getName());
+        System.out.println("player 2 : " + player2.getName());
 
         List<Hero> heroesPull = new ArrayList<Hero>();
         Hero dwarfWarrior = new DwarfWarrior();
@@ -85,9 +84,9 @@ public class Main {
         System.out.println(player1.toString());
         System.out.println(player2.toString());
 
-        //while (game.isNotEnd()){
-        while (true){
-
+        Game game = new Game(player1, player2);
+        while (!game.isEnd()){
+            game.nextStep();
             game.print();
             break;
         }

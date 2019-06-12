@@ -2,7 +2,7 @@ package model;
 
 public abstract class Hero implements SpecialActionable {
 
-    private int currentLevel = 0;
+    private int currentLevel = 1;
 
     private int endurance;
     private int fastDescentCost;
@@ -62,11 +62,14 @@ public abstract class Hero implements SpecialActionable {
     {
         actionRestoreEndurance();
         this.endurance -= 5;
+        this.currentLevel += 1;
     }
 
     public void actionFastDescent()
     {
-
+        actionRestoreEndurance();
+        this.endurance -= fastDescentCost;
+        this.currentLevel += 2;
     }
 
 }
