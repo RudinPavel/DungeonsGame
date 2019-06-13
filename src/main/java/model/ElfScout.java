@@ -12,7 +12,7 @@ public class ElfScout extends Hero {
     public boolean actionSpecialAction(Player p) {
         if (super.ableToDoAction(super.specialActionCost)){
             this.currentEndurance -= this.specialActionCost;
-            this.currentLevel += 3;
+            changeLevel(3);
             return true;
         }
         else {

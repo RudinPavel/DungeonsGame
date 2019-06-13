@@ -12,6 +12,15 @@ public abstract class Hero implements SpecialActionable {
     protected int restEnduranceRestore = 3;
     protected int fastDescentCost;
     protected int specialActionCost;
+    protected int levelLock = 25;
+
+    public int getLevelLock() {
+        return levelLock;
+    }
+
+    public void setLevelLock(int levelLock) {
+        this.levelLock = levelLock;
+    }
 
     public Hero(int maxEndurance, int fastDescentCost, int specialActionCost) {
         this.maxEndurance = maxEndurance;
@@ -64,6 +73,21 @@ public abstract class Hero implements SpecialActionable {
         actionRestoreEndurance(enduranceRestore);
     }
 
+    protected boolean changeLevel(int stepSize){
+
+        if (this.currentLevel >= levelLock)
+        {
+            this.currentLevel += stepSize;
+            return true;
+        }
+        else {
+            this.currentLevel += stepSize;
+            if (this.currentLevel >= levelLock)
+                this.currentLevel = levelLock - 1;
+            return true;
+        }
+    }
+
     protected boolean ableToDoAction(int cost){
         if (currentEndurance < cost) return false;
         return true;
@@ -93,7 +117,7 @@ public abstract class Hero implements SpecialActionable {
     {
         if (ableToDoAction(this.descentCost)){
             this.currentEndurance -= this.descentCost;
-            this.currentLevel += 1;
+            changeLevel(1);
             return true;
         }
         else {
@@ -106,7 +130,7 @@ public abstract class Hero implements SpecialActionable {
     {
         if (ableToDoAction(this.fastDescentCost)){
             this.currentEndurance -= this.fastDescentCost;
-            this.currentLevel += 2;
+            changeLevel(2);
             return true;
         }
         else {

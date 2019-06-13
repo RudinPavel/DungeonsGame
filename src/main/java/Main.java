@@ -114,6 +114,7 @@ public class Main {
         Game game = new Game(player1, player2);
         while (!game.isEnd()){
             currentPlayer.getHero().restoreEndurance();
+            secondPlayer.getHero().setLevelLock(25);
             boolean stepContinue = true;
             while (stepContinue) {
                 System.out.println();

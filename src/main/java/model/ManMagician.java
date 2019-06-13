@@ -15,11 +15,11 @@ public class ManMagician extends Hero {
 
             if (p.getHero().getCurrentLevel() - this.currentLevel == 1) { // стоит на уровень ниже
                 p.getHero().setCurrentLevel(this.currentLevel);
-                this.currentLevel += 1;
+                changeLevel(1);
                 System.out.println("Change levels!");
             }
             else {
-                this.currentLevel += 1;
+                changeLevel(1);
                 System.out.println("Just descent!");
             }
 
