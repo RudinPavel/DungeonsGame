@@ -15,12 +15,12 @@ public class Game {
     }
 
     public boolean isEnd(){
-        if (player1.getHero().getCurrentLevel() >= 500)
+        if (player1.getHero().getCurrentLevel() >= 20)
         {
             System.out.println("player 1 " + player1.getName() + " won!");
             return true;
         }
-        if (player2.getHero().getCurrentLevel() >= 500)
+        if (player2.getHero().getCurrentLevel() >= 20)
         {
             System.out.println("player 2 " + player2.getName() + " won!");
             return true;

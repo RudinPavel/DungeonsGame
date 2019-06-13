@@ -4,6 +4,7 @@ import model.DwarfWarrior;
 import model.ElfScout;
 import model.Hero;
 import model.ManMagician;
+import utils.Log;
 
 import java.util.*;
 
@@ -164,5 +165,9 @@ public class Main {
             }
         }
         System.out.println("Good luck!");
+        System.out.println();
+
+        Log.addAction("Good luck!");
+        System.out.println(Log.getLog());
     }
 }
