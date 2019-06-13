@@ -27,11 +27,16 @@ public class Player {
         this.hero = hero;
     }
 
+//    public void printHeroParams(){
+//        System.out.println(hero.toString());}
+
+
+
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
-                ", hero=" + hero +
+                "'" + name + '\'' +
+                ", " + hero +
                 '}';
     }
 }

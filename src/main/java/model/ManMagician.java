@@ -7,12 +7,12 @@ public class ManMagician extends Hero {
         super(30, 13, 15);
     }
 
-    public void actionSpecialAction() {
-
+    public boolean actionSpecialAction() {
+        return true;
     }
 
     @Override
     public String toString() {
-        return name;
+        return name + super.toString();
     }
 }

@@ -42,13 +42,13 @@ public class Main {
         Player currentPlayer;
         int count = 0;
 
-        while (count < 2) {
+        if (player1HasFirstStep) {
+            currentPlayer = player1;
+        } else {
+            currentPlayer = player2;
+        }
 
-            if (player1HasFirstStep) {
-                currentPlayer = player1;
-            } else {
-                currentPlayer = player2;
-            }
+        while (count < 2) {
 
             System.out.println();
             System.out.println(currentPlayer.getName() + " select your hero:");
@@ -62,8 +62,7 @@ public class Main {
                     int dwarfWarriorIndex = heroesPull.indexOf(dwarfWarrior);
                     if (dwarfWarriorIndex == -1) {
                         System.out.println("Hero is not available. Choose another.");
-                        count--;
-                        break;
+                        continue;
                         // throw new Exception("Hero is not available");
                     }
                     currentPlayer.setHero(heroesPull.get(dwarfWarriorIndex));
@@ -73,8 +72,7 @@ public class Main {
                     int elfScoutIndex = heroesPull.indexOf(elfScout);
                     if (elfScoutIndex == -1) {
                         System.out.println("Hero is not available. Choose another.");
-                        count--;
-                        break;
+                        continue;
                         //throw new Exception("Hero is not available");
                     }
                     currentPlayer.setHero(heroesPull.get(elfScoutIndex));
@@ -84,8 +82,7 @@ public class Main {
                     int manMagicianIndex = heroesPull.indexOf(manMagician);
                     if (manMagicianIndex == -1) {
                         System.out.println("Hero is not available. Choose another.");
-                        count--;
-                        break;
+                        continue;
                         //throw new Exception("Hero is not available");
                     }
                     currentPlayer.setHero(heroesPull.get(manMagicianIndex));
@@ -94,17 +91,64 @@ public class Main {
             }
 
             count++;
-            player1HasFirstStep = !player1HasFirstStep;
+            if (currentPlayer == player1) currentPlayer = player2;
+            else currentPlayer = player1;
         }
 
         System.out.println(player1.toString());
         System.out.println(player2.toString());
 
+        if (player1HasFirstStep) {
+            currentPlayer = player1;
+        } else {
+            currentPlayer = player2;
+        }
+
         Game game = new Game(player1, player2);
         while (!game.isEnd()){
-            game.nextStep();
+            currentPlayer.getHero().restoreEndurance();
+            boolean stepContinue = true;
+            while (stepContinue) {
+                System.out.println();
+                System.out.println(currentPlayer.getName() + " step:");
+                System.out.println("1. Rest");
+                System.out.println("2. Descent");
+                System.out.println("3. Fast Descent");
+                System.out.println("4. Special Action");
+                System.out.println(currentPlayer.getName() + " input number for action : ");
+                int choose = Integer.parseInt(cin.nextLine());
+                switch (choose){
+                    case 1:
+                        if (currentPlayer.getHero().actionRest())
+                            stepContinue = false;
+                        else continue;
+                        break;
+                    case 2:
+                        if (currentPlayer.getHero().actionDescent())
+                            stepContinue = false;
+                        else continue;
+                       break;
+                    case 3:
+                        if (currentPlayer.getHero().actionFastDescent())
+                            stepContinue = false;
+                        else continue;
+                        break;
+                    case 4:
+                        if (currentPlayer.getHero().actionSpecialAction())
+                            stepContinue = false;
+                        else continue;
+                        break;
+                        default:
+                            System.out.println("No action for this number!");
+                            continue;
+                }
+                break;
+            }
             game.print();
-            break;
+            System.out.println(currentPlayer.toString());
+            if (currentPlayer == player1) currentPlayer = player2;
+            else currentPlayer = player1;
+            //break;
         }
         System.out.println("Good luck!");
     }

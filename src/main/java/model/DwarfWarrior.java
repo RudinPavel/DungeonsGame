@@ -7,12 +7,12 @@ public class DwarfWarrior extends Hero {
         super(50, 15, 20);
     }
 
-    public void actionSpecialAction() {
-
+    public boolean actionSpecialAction() {
+        return true;
     }
 
     @Override
     public String toString() {
-        return name;
+        return name + super.toString();
     }
 }
