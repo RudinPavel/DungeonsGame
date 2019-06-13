@@ -50,7 +50,8 @@ public class Main {
                 currentPlayer = player2;
             }
 
-            System.out.println("Select your hero:");
+            System.out.println();
+            System.out.println(currentPlayer.getName() + " select your hero:");
             System.out.println("1. Dwarf Warrior");
             System.out.println("2. Elf Scout");
             System.out.println("3. Man Magician");
@@ -59,19 +60,34 @@ public class Main {
             switch (choice) {
                 case 1:
                     int dwarfWarriorIndex = heroesPull.indexOf(dwarfWarrior);
-                    if (dwarfWarriorIndex == -1) throw new Exception("Hero is not available");
+                    if (dwarfWarriorIndex == -1) {
+                        System.out.println("Hero is not available. Choose another.");
+                        count--;
+                        break;
+                        // throw new Exception("Hero is not available");
+                    }
                     currentPlayer.setHero(heroesPull.get(dwarfWarriorIndex));
                     heroesPull.remove(dwarfWarriorIndex);
                     break;
                 case 2:
                     int elfScoutIndex = heroesPull.indexOf(elfScout);
-                    if (elfScoutIndex == -1) throw new Exception("Hero is not available");
+                    if (elfScoutIndex == -1) {
+                        System.out.println("Hero is not available. Choose another.");
+                        count--;
+                        break;
+                        //throw new Exception("Hero is not available");
+                    }
                     currentPlayer.setHero(heroesPull.get(elfScoutIndex));
                     heroesPull.remove(elfScoutIndex);
                     break;
                 case 3:
                     int manMagicianIndex = heroesPull.indexOf(manMagician);
-                    if (manMagicianIndex == -1) throw new Exception("Hero is not available");
+                    if (manMagicianIndex == -1) {
+                        System.out.println("Hero is not available. Choose another.");
+                        count--;
+                        break;
+                        //throw new Exception("Hero is not available");
+                    }
                     currentPlayer.setHero(heroesPull.get(manMagicianIndex));
                     heroesPull.remove(manMagicianIndex);
                     break;
