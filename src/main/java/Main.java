@@ -40,6 +40,7 @@ public class Main {
                 : player2.getName() + " has first step!");
 
         Player currentPlayer;
+        Player secondPlayer;
         int count = 0;
 
         if (player1HasFirstStep) {
@@ -91,8 +92,12 @@ public class Main {
             }
 
             count++;
-            if (currentPlayer == player1) currentPlayer = player2;
-            else currentPlayer = player1;
+            if (currentPlayer == player1) {
+                currentPlayer = player2;
+            }
+            else {
+                currentPlayer = player1;
+            }
         }
 
         System.out.println(player1.toString());
@@ -100,8 +105,10 @@ public class Main {
 
         if (player1HasFirstStep) {
             currentPlayer = player1;
+            secondPlayer = player2;
         } else {
             currentPlayer = player2;
+            secondPlayer = player1;
         }
 
         Game game = new Game(player1, player2);
@@ -134,7 +141,7 @@ public class Main {
                         else continue;
                         break;
                     case 4:
-                        if (currentPlayer.getHero().actionSpecialAction())
+                        if (currentPlayer.getHero().actionSpecialAction(secondPlayer))
                             stepContinue = false;
                         else continue;
                         break;
@@ -146,9 +153,14 @@ public class Main {
             }
             game.print();
             System.out.println(currentPlayer.toString());
-            if (currentPlayer == player1) currentPlayer = player2;
-            else currentPlayer = player1;
-            //break;
+            if (currentPlayer == player1) {
+                currentPlayer = player2;
+                secondPlayer = player1;
+            }
+            else {
+                currentPlayer = player1;
+                secondPlayer = player2;
+            }
         }
         System.out.println("Good luck!");
     }

@@ -1,5 +1,7 @@
 package model;
 
+import game.Player;
+
 public class ElfScout extends Hero {
 
     private String name = "Elf Scout";
@@ -7,7 +9,7 @@ public class ElfScout extends Hero {
         super(40, 12, 24);
     }
 
-    public boolean actionSpecialAction() {
+    public boolean actionSpecialAction(Player p) {
         if (super.ableToDoAction(super.specialActionCost)){
             this.currentEndurance -= this.specialActionCost;
             this.currentLevel += 3;

@@ -1,6 +1,8 @@
 package model;
 
+import game.Player;
+
 public interface SpecialActionable {
 
-    boolean actionSpecialAction();
+    boolean actionSpecialAction(Player p);
 }
