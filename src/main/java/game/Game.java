@@ -3,26 +3,42 @@ package game;
 import model.DwarfWarrior;
 import model.ElfScout;
 import model.ManMagician;
+import utils.Log;
 
 public class Game {
 
     private Player player1;
     private Player player2;
+    private String log;
+
+    public Game(){
+
+    }
 
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
 
+    public String getLog() {
+        return log;
+    }
+
+    public void setLog(String log) {
+        this.log = log;
+    }
+
     public boolean isEnd(){
         if (player1.getHero().getCurrentLevel() >= 20)
         {
             System.out.println("player 1 " + player1.getName() + " won!");
+            Log.addAction("player 1 " + player1.getName() + " won!");
             return true;
         }
         if (player2.getHero().getCurrentLevel() >= 20)
         {
             System.out.println("player 2 " + player2.getName() + " won!");
+            Log.addAction("player 2 " + player2.getName() + " won!");
             return true;
         }
         return false;
@@ -54,17 +70,14 @@ public class Game {
                 if (player2.getHero().getCurrentLevel() == (i+1))
                     result += printHeroShortName(player2);
 
-                result += " ] ";
+                result += "  ] ";
             }
             result += (i+1) + " level";
             result += '\n';
-            result += " || ";
+            result += " |=| ";
             result += '\n';
         }
 
         System.out.println(result);
-    }
-
-    public void nextStep() {
     }
 }
